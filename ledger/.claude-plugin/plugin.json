@@ -1,0 +1,25 @@
+{
+  "name": "ledger",
+  "version": "0.1.0",
+  "description": "Every tool call is one line: status, verb, target, result; ctrl+o still shows the full rows",
+  "author": {
+    "name": "Rezaul H Reza",
+    "url": "https://github.com/rezaulhreza"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rezaulhreza/claude-code-mods",
+  "userConfig": {
+    "accent": {
+      "type": "string",
+      "title": "Accent colour",
+      "description": "Hex colour for running items and highlights.",
+      "default": "#D97757"
+    },
+    "keepDiffs": {
+      "type": "boolean",
+      "title": "Keep diffs",
+      "description": "Keep the diff under Edit and Write rows. Off makes every tool call one line.",
+      "default": true
+    }
+  }
+}
