@@ -1,0 +1,38 @@
+{
+  "name": "pulse",
+  "version": "0.1.0",
+  "description": "Spinner says what Claude is doing, turn line counts the work, status line shows model, effort, context, limits and cost",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Rezaul H Reza",
+    "url": "https://github.com/rezaulhreza"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rezaulhreza/claude-code-mods",
+  "userConfig": {
+    "spinner": {
+      "type": "boolean",
+      "title": "Spinner words",
+      "description": "Say what Claude is doing in the spinner (Running npm test, Reading src/a.ts).",
+      "default": true
+    },
+    "turnLine": {
+      "type": "boolean",
+      "title": "Turn line",
+      "description": "Replace 'Baked for 3s' with tools, files changed and diff size.",
+      "default": true
+    },
+    "statusLine": {
+      "type": "boolean",
+      "title": "Status line",
+      "description": "Show model, effort, context, 5-hour and weekly limits, and cost.",
+      "default": true
+    },
+    "contextWarn": {
+      "type": "number",
+      "title": "Context warning (%)",
+      "description": "Add 'compact soon' when the context passes this percentage.",
+      "default": 75
+    }
+  }
+}
