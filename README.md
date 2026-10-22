@@ -16,7 +16,7 @@ Four mods for the Claude Code terminal. Each one shows true information about th
 ```
 ✻ Running php artisan test --filter=PriceCalc… (14s · ↓ 2.1k tokens)
 ✓ Done in 1m 04s · 9 tools · 3 files changed · +48 −12
-opus-5.5 high · context 38% · 5h limit 22% · week limit 31% · $0.61
+opus-5.5 high · context 76k/200k (38%), 124k left · 5h limit 22% · week limit 31% · $0.61
 ```
 
 **crew** (docked beside the chat in a wide fullscreen terminal)

@@ -1,6 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
-import { closest, describe, diffsOf, statusLine, turnLine } from '../hooks/describe'
+import { closest, describe, diffsOf, statusLine, tokenCount, turnLine } from '../hooks/describe'
 
 const SPINNER = {
   plugin: 'pulse',
@@ -49,11 +49,13 @@ test('turn line and status line read cleanly', () => {
   expect(closest([stat], 90000)).toBeUndefined()
   expect(
     statusLine('claude-opus-5-5', {
-      context: { percent: 81 },
+      context: { percent: 81, tokens: 162_000, window: 200_000 },
       rateLimits: [{ kind: 'five_hour', percentUsed: 64.4 }, { kind: 'seven_day', percentUsed: 31 }],
       cost: { usd: 2.4 },
     }),
-  ).toBe('opus-5.5 · context 81%, compact soon · 5h limit 64% · week limit 31% · $2.40')
+  ).toBe('opus-5.5 · context 162k/200k (81%), 38k left, compact soon · 5h limit 64% · week limit 31% · $2.40')
+  expect(statusLine('claude-opus-5-5', { context: { percent: 8 } })).toBe('opus-5.5 · context 8%')
+  expect([tokenCount(950), tokenCount(76_400), tokenCount(1_000_000), tokenCount(1_250_000)]).toEqual(['950', '76k', '1M', '1.3M'])
   expect(statusLine('claude-opus-5-5', {}, 'high')).toBe('opus-5.5 high')
 })
 
