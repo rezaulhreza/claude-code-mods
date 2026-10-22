@@ -1,0 +1,30 @@
+{
+  "name": "claude-code-mods",
+  "description": "Four Claude Code terminal mods: pulse, crew, brief and ledger",
+  "owner": {
+    "name": "Rezaul H Reza",
+    "url": "https://github.com/rezaulhreza"
+  },
+  "plugins": [
+    {
+      "name": "pulse",
+      "source": "./pulse",
+      "description": "Spinner says what Claude is doing, turn line counts the work, status line shows model, effort, context, limits and cost"
+    },
+    {
+      "name": "crew",
+      "source": "./crew",
+      "description": "Live pane of subagents with avatars; each agent opens in its own pane where you can message it"
+    },
+    {
+      "name": "brief",
+      "source": "./brief",
+      "description": "At a new session, a band shows the project, git state and where the last session here stopped"
+    },
+    {
+      "name": "ledger",
+      "source": "./ledger",
+      "description": "Every tool call is one line: status, verb, target, result"
+    }
+  ]
+}
