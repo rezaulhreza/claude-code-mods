@@ -231,17 +231,28 @@ export function modelLabel(model: string): string {
 }
 
 type Usage = {
-  context?: { percent?: number }
+  context?: { percent?: number; tokens?: number; window?: number }
   rateLimits?: readonly { kind: string; percentUsed: number }[]
   cost?: { usd: number }
+}
+
+// 950, 76k, 1M, 1.2M: token counts the way the status line reads them.
+export function tokenCount(n: number): string {
+  if (n < 1000) return String(n)
+  if (n < 1_000_000) return `${Math.round(n / 1000)}k`
+
+  return `${Number((n / 1_000_000).toFixed(1))}M`
 }
 
 export function statusLine(model: string, usage: Usage, effort?: string | number, warnAt = 75): string {
   const parts = [effort === undefined ? modelLabel(model) : `${modelLabel(model)} ${effort}`]
   const pct = usage.context?.percent
+  const tokens = usage.context?.tokens
+  const window = usage.context?.window
 
   if (pct !== undefined) {
-    parts.push(pct >= warnAt ? `context ${pct}%, compact soon` : `context ${pct}%`)
+    const fill = tokens !== undefined && window ? `context ${tokenCount(tokens)}/${tokenCount(window)} (${pct}%), ${tokenCount(Math.max(0, window - tokens))} left` : `context ${pct}%`
+    parts.push(pct >= warnAt ? `${fill}, compact soon` : fill)
   }
 
   for (const limit of usage.rateLimits ?? []) {
