@@ -1,0 +1,30 @@
+{
+  "name": "crew",
+  "version": "0.1.0",
+  "description": "Live pane of subagents with avatars; each agent opens in its own pane where you can message it",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Rezaul H Reza",
+    "url": "https://github.com/rezaulhreza"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rezaulhreza/claude-code-mods",
+  "userConfig": {
+    "accent": {
+      "type": "string",
+      "title": "Accent colour",
+      "description": "Hex colour for running items and highlights.",
+      "default": "#D97757"
+    },
+    "autoOpen": {
+      "type": "string",
+      "title": "Open the pane",
+      "description": "auto opens the agents pane on the first spawn in a wide fullscreen terminal; command opens it only with /crew.",
+      "default": "auto",
+      "options": [
+        "auto",
+        "command"
+      ]
+    }
+  }
+}
