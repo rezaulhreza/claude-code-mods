@@ -1,0 +1,26 @@
+{
+  "name": "brief",
+  "version": "0.1.0",
+  "description": "At a new session, a band above the prompt shows the project, git state and where the last session here stopped",
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Rezaul H Reza",
+    "url": "https://github.com/rezaulhreza"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/rezaulhreza/claude-code-mods",
+  "userConfig": {
+    "accent": {
+      "type": "string",
+      "title": "Accent colour",
+      "description": "Hex colour for running items and highlights.",
+      "default": "#D97757"
+    },
+    "showLast": {
+      "type": "boolean",
+      "title": "Show the last stop",
+      "description": "Show the first line of Claude's last reply from the previous session in this folder.",
+      "default": true
+    }
+  }
+}
