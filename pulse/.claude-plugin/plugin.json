@@ -1,6 +1,6 @@
 {
   "name": "pulse",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Spinner says what Claude is doing, turn line counts the work, status line shows model, effort, context, limits and cost",
   "types": "./types/index.d.ts",
   "author": {
