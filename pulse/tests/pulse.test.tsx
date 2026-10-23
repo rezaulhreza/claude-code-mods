@@ -93,6 +93,28 @@ test('the spinner says what the running tool does', async ($, on) => {
   await call
 })
 
+test('a /clear resets the context on the status line', async ($, on) => {
+  let status: string | undefined
+
+  on('session.start', (_, e) => ({ cwd: e.cwd }))
+  on('session.end', (_, e) => ({ sessionId: e.sessionId }))
+  on('session.usage', () => ({
+    value: { startedAt: 0, context: { window: 200_000, tokens: 150_000, percent: 75 }, rateLimits: [] },
+  }))
+  on('session.model', () => ({ value: 'claude-opus-5-5' }))
+  on('ui.status', (_, e) => {
+    status = e.text
+
+    return { value: undefined }
+  })
+
+  await $.session.start({ cwd: '/w', surface: 'terminal', isInteractive: true })
+  expect(status).toBe('opus-5.5 · context 150k/200k (75%), 50k left, compact soon')
+
+  await $.session.end({ reason: 'clear', sessionId: 's1', resume: { id: 's1' } })
+  expect(status).toBe('opus-5.5 · context 0/200k (0%), 200k left')
+})
+
 test('an old turn line still reads as done, with its time', async ($, on) => {
   on('ui.render', ($, e) => {
     const { Text } = $.ui.resolve(e)

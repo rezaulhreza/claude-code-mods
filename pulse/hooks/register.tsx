@@ -42,6 +42,17 @@ export const register: Register = (on, options) => {
     return started
   })
 
+  // /clear fires no session.start, and the engine keeps reporting the last
+  // response's fill until the next turn measures the new conversation.
+  on('session.end', { reason: 'clear' }, async ($, e, next) => {
+    const ended = await next(e)
+    const usage = await $.session.usage()
+    shown.usage = { ...usage, context: { window: usage.context.window, tokens: 0, percent: 0 } }
+    await showStatus($, shown)
+
+    return ended
+  })
+
   on('session.measure', async ($, e, next) => {
     const measured = await next(e)
     shown.usage = e
